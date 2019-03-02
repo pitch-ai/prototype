@@ -1,0 +1,44 @@
+/* Font */
+
+body {
+ font-family: Avenir;
+}
+
+h1 {
+ font-size: 1.2em;
+}
+
+h2 {
+ font-size: 1em;
+}
+
+/* Projects */
+
+.presentations .card {
+ border: none;
+}
+
+ .presentations .card-body {
+  padding-left: 0;
+  padding-right: 0;
+ }
+
+ /* New Presentation */
+
+.new-presentation .rounded-circle {
+ width: 130px;
+ height: 130px;
+ background: gray;
+}
+
+.new-presentation a {
+ color: inherit;
+}
+
+.new-presentation a:hover {
+ text-decoration: none;
+}
+
+.new-presentation .card:hover {
+ border-color: #3F47F5;
+}
