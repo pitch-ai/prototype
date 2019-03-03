@@ -2,19 +2,19 @@
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-  <div class="container">
+  <div class="container blue-header">
     <p>Welcome back, {{ user }}!</p>
     <p>What are you going to practice today?</p>
   </div>
 </div>
 
-<div class="container presentations">
-  <h1>My presentations</h1>
-  <div class="row">
+<div class="container presentations tester">
+  <h1 class="presentation-header">My presentations</h1>
+  <div class="row ">
     <div class="col-md-4">
       <div class="card">
        <a href="{{ url_for('new_presentation') }}">
-       <img class="card-img-top" src="static/images/project-placeholder.png" alt="Card image cap">
+         <div class="outlined-card" id="plus"></div>
        </a>
        <div class="card-body">
         <h2>Start a new presentation</h2>
@@ -23,7 +23,9 @@
     </div>
     <div class="col-md-4">
       <div class="card">
-        <img class="card-img-top" src="static/images/project-placeholder.png" alt="Card image cap">
+        <div class="outlined-card" id="pink-2"></div>
+        <!-- <img class="presentation-card" src="static/images/circuit.svg" alt="Card image cap"> -->
+
         <div class="card-body">
          <h2>Physics presentation</h2>
         </div>
@@ -31,13 +33,50 @@
    </div>
     <div class="col-md-4">
       <div class="card">
-        <img class="card-img-top" src="static/images/project-placeholder.png" alt="Card image cap">
+        <div class="outlined-card" id="pink"></div>
         <div class="card-body">
          <h2>COMM220 final</h2>
         </div>
       </div>
     </div>
   </div>
+
  </div>
+
+
+
+ <div class="container presentations">
+   <h1 class="course-header">Course packs</h1>
+   <div class="row ">
+     <div class="col-md-4">
+       <div class="card">
+        <a href="{{ url_for('new_presentation') }}">
+          <div class="outlined-card" id="yellow-1"></div>
+        </a>
+        <div class="card-body">
+         <h2>Start a new presentation</h2>
+        </div>
+      </div>
+     </div>
+     <div class="col-md-4">
+       <div class="card">
+         <div class="outlined-card" id="yellow-3"></div>
+         <div class="card-body">
+          <h2>Physics presentation</h2>
+         </div>
+       </div>
+    </div>
+     <div class="col-md-4">
+       <div class="card">
+         <div class="outlined-card" id="yellow-2"></div>
+         <div class="card-body">
+          <h2>COMM220 final</h2>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>
+
+
 
 {% include "footer.html" %}

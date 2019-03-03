@@ -19,6 +19,7 @@ ALLOWED_EXTENSIONS = set(['wav'])
 USERNAME = "Anita"
 
 # App config.
+TEMPLATES_AUTO_RELOAD = True
 DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -32,10 +33,10 @@ def allowed_file(filename):
 # Semantic similarity
 # Takes in a text string and outputs the understanding of the audience:
 # {
-#   "categories": ["/technology and computing/internet technology"], 
-#   "concepts": ["Copyright", "Copyright infringement"], 
-#   "emotions": "sadness", 
-#   "keywords": ["Copyright Act", "copyright violation"], 
+#   "categories": ["/technology and computing/internet technology"],
+#   "concepts": ["Copyright", "Copyright infringement"],
+#   "emotions": "sadness",
+#   "keywords": ["Copyright Act", "copyright violation"],
 #   "sentiment": "negative"
 # }
 text_example = "The missiles and rockets are no longer flying in every direction. Nuclear testing has stopped. Some military facilities are already being dismantled. Our hostages have been released. And as promised, the remains of our fallen heroes are being returned home to lay at rest in American soil."
@@ -164,7 +165,7 @@ def new_presentation():
             filler_word ="like"
             like_count = get_filler_word_count(filler_word,text)
             flash(" Transcript: " + str(text) + "</br>" +
-                "Like count : " + str(like_count) + "</br>" + 
+                "Like count : " + str(like_count) + "</br>" +
                 "Semantic similarity: " + str(perception(text)))
             return render_template("results.html", user = USERNAME)
         else:
@@ -202,7 +203,7 @@ def upload_file():
             filler_word ="like"
             like_count = get_filler_word_count(filler_word,text)
             flash(" Transcript: " + str(text) + "</br>" +
-                "Like count : " + str(like_count) + "</br>" + 
+                "Like count : " + str(like_count) + "</br>" +
                 "Semantic similarity: " + str(perception(text)))
         else:
             flash('Error: Problem processing the file')
