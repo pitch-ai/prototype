@@ -2,42 +2,56 @@
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-  <div class="container">
+  <div class="container blue-header">
     <p>Start a new presentation</p>
+    <!-- <p>What are you going to practice today?</p> -->
   </div>
 </div>
 
 <div class="container new-presentation">
   <div class="row">
     <div class="col-md-6">
-      <div class="card">
+      <div class="card" id="uploadPresentation">
       <form  action="" enctype="multipart/form-data" method="post" role="form">
       {{ form.csrf }}
       <!-- <input type="file" class="card form-control" id="inputFile" name="inputFile" placeholder="Choose a file to upload"> -->
       <input type="file" class="card form-control" id="inputFile" name="inputFile" style="display: none">
-       <div class="row card-body" id="uploadPresentation">
-        <div class="col-md-4">
-         <img class="rounded-circle" src="static/images/new-presentation-placeholder.png" alt="Card image cap">
-        </div>
-        <div class="col-md-8">
-         <h2>Hello a video or audio file</h2>
-        </div>
+
+       <div class="card-wrapper" >
+         <div class="card-start">
+
+           <div class="col-md-4" style="margin-left:50px;">
+            <img style="width:125px" src="static/images/upload.svg" alt="Card image cap">
+           </div>
+           <div class="col-md-8">
+            <h1>Upload a video or audio file</h1>
+           </div>
+           <!-- <img class="plus" src="/static/images/plus.svg"> -->
+         </div>
        </div>
-       <button type="submit" id="analyze-btn" style="position: absolute">Analyze</button>
+
+
        </form>
+
       </div>
+
+      <button type="submit" id="analyze-btn">Analyze</button>
     </div>
 
     <div class="col-md-6">
      <a href="{{ url_for('record_video') }}">
       <div class="card">
-        <div class="row card-body">
-         <div class="col-md-4">
-          <img class="rounded-circle" src="static/images/new-presentation-placeholder.png" alt="Card image cap">
-         </div>
-         <div class="col-md-8">
-          <h2>Record a new presentation</h2>
-         </div>
+        <div class="card-wrapper" id="uploadPresentation">
+          <div class="card-start">
+
+            <div class="col-md-4" style="margin-left:50px;">
+             <img style="width:125px" src="static/images/record.svg" alt="Card image cap">
+            </div>
+            <div class="col-md-8">
+             <h1>Record a new presentation</h1>
+            </div>
+            <!-- <img class="plus" src="/static/images/plus.svg"> -->
+          </div>
         </div>
       </div>
      </a>
@@ -45,4 +59,4 @@
   </div>
  </div>
 
-{% include "footer.html" %}
+<!-- {% include "footer.html" %} -->

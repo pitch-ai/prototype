@@ -14,7 +14,13 @@
     <div class="col-md-4">
       <div class="card">
        <a href="{{ url_for('new_presentation') }}">
-         <div class="outlined-card" id="plus"></div>
+         <div class="card-wrapper">
+           <div class="card-start">
+             
+             <img class="plus" src="/static/images/plus.svg">
+
+           </div>
+         </div>
        </a>
        <div class="card-body">
         <h2>Start a new presentation</h2>
@@ -23,19 +29,24 @@
     </div>
     <div class="col-md-4">
       <div class="card">
-        <div class="outlined-card" id="pink-2"></div>
+        <!-- <div class="outlined-card" id="pink-2"></div> -->
+        <div class="card-wrapper">
+          <div class="card-image" id="pink"></div>
+        </div>
         <!-- <img class="presentation-card" src="static/images/circuit.svg" alt="Card image cap"> -->
 
         <div class="card-body">
-         <h2>Physics presentation</h2>
+         <h2><i class="gray fas fa-video"></i>&nbsp; Physics presentation</h2>
         </div>
       </div>
    </div>
     <div class="col-md-4">
       <div class="card">
-        <div class="outlined-card" id="pink"></div>
+        <div class="card-wrapper">
+          <div class="card-image" id="pink-2"></div>
+        </div>
         <div class="card-body">
-         <h2>COMM220 final</h2>
+         <h2><i class="gray fas fa-video"></i>&nbsp; COMM220 final</h2>
         </div>
       </div>
     </div>
@@ -51,7 +62,9 @@
      <div class="col-md-4">
        <div class="card">
         <a href="{{ url_for('new_presentation') }}">
-          <div class="outlined-card" id="yellow-1"></div>
+          <div class="card-wrapper">
+            <div class="card-image" id="yellow-1"></div>
+          </div>
         </a>
         <div class="card-body">
          <h2>Start a new presentation</h2>
@@ -60,7 +73,9 @@
      </div>
      <div class="col-md-4">
        <div class="card">
-         <div class="outlined-card" id="yellow-3"></div>
+         <div class="card-wrapper">
+           <div class="card-image" id="yellow-2"></div>
+         </div>
          <div class="card-body">
           <h2>Physics presentation</h2>
          </div>
@@ -68,7 +83,9 @@
     </div>
      <div class="col-md-4">
        <div class="card">
-         <div class="outlined-card" id="yellow-2"></div>
+         <div class="card-wrapper">
+           <div class="card-image" id="yellow-3"></div>
+         </div>
          <div class="card-body">
           <h2>COMM220 final</h2>
          </div>
