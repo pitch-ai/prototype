@@ -2,16 +2,16 @@
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-  <div class="container blue-header">
+  <div class="container blue-header" >
     <p>Start a new presentation</p>
-    <!-- <p>What are you going to practice today?</p> -->
+    <p>Upload a file or record in the browser</p>
   </div>
 </div>
 
 <div class="container new-presentation">
   <div class="row">
     <div class="col-md-6">
-      <div class="card" id="uploadPresentation">
+      <div id="uploadPresentation">
       <form  action="" enctype="multipart/form-data" method="post" role="form">
       {{ form.csrf }}
       <!-- <input type="file" class="card form-control" id="inputFile" name="inputFile" placeholder="Choose a file to upload"> -->
@@ -26,13 +26,10 @@
            <div class="col-md-8">
             <h1>Upload a video or audio file</h1>
            </div>
-           <!-- <img class="plus" src="/static/images/plus.svg"> -->
          </div>
        </div>
 
-
        </form>
-
       </div>
 
       <button type="submit" id="analyze-btn">Analyze</button>
@@ -40,7 +37,7 @@
 
     <div class="col-md-6">
      <a href="{{ url_for('record_video') }}">
-      <div class="card">
+      
         <div class="card-wrapper" id="uploadPresentation">
           <div class="card-start">
 
@@ -53,10 +50,10 @@
             <!-- <img class="plus" src="/static/images/plus.svg"> -->
           </div>
         </div>
-      </div>
+
      </a>
    </div>
   </div>
  </div>
 
-<!-- {% include "footer.html" %} -->
+{% include "footer.html" %}

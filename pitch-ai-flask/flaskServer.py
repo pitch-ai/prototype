@@ -176,6 +176,10 @@ def new_presentation():
 def record_video():
     return "Under construction"
 
+@app.route('/results')
+def results():
+    return render_template("results.html", user = USERNAME)   
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],

@@ -34,6 +34,7 @@ html{
 body {
  font-family: 'Avenir LT Std';
 
+
 }
 
 h1 {
@@ -172,13 +173,16 @@ button{
 /* Footer */
 
 footer{
-  background-color: #f5f5f5;
+  background-color: #fafbfc;
+  text-align: center;
+
+
 }
 
 .footer-branded{
   margin-top:50px;
-  padding-top:50px;
-  padding-bottom: 50px;
+  padding-top:25px;
+  padding-bottom: 25px;
 
 }
 
