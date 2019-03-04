@@ -1,11 +1,23 @@
 {% include "header.html" %}
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
+<div class="jumbotron" id="jumbotron-presentation">
   <div class="container blue-header" >
     <p>Start a new presentation</p>
     <p>Upload a file or record in the browser</p>
   </div>
+</div>
+
+<div id="upload-loading" class="container">
+ <!-- Spinner -->
+ <div id="upload-spinner" class="spinner">
+   <div class="dot1"></div>
+   <div class="dot2"></div>
+ </div>
+ <p class="text-center">Hold tight! We're watching your presentation.</p>
+ <p class="text-center" id="cancel-upload">
+  <a href="#">Cancel</a>
+ </p>
 </div>
 
 <div class="container new-presentation">
