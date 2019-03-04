@@ -11,15 +11,12 @@
 <div class="container new-presentation">
   <div class="row">
     <div class="col-md-6">
+     <form  action="" enctype="multipart/form-data" method="post" role="form">
+     {{ form.csrf }}
       <div id="uploadPresentation">
-      <form  action="" enctype="multipart/form-data" method="post" role="form">
-      {{ form.csrf }}
-      <!-- <input type="file" class="card form-control" id="inputFile" name="inputFile" placeholder="Choose a file to upload"> -->
       <input type="file" class="card form-control" id="inputFile" name="inputFile" style="display: none">
-
        <div class="card-wrapper" >
          <div class="card-start">
-
            <div class="col-md-4" style="margin-left:50px;">
             <img style="width:125px" src="static/images/upload.svg" alt="Card image cap">
            </div>
@@ -28,11 +25,10 @@
            </div>
          </div>
        </div>
-
-       </form>
       </div>
-
       <button type="submit" id="analyze-btn">Analyze</button>
+     </form>
+
     </div>
 
     <div class="col-md-6">
