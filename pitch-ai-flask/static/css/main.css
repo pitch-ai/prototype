@@ -149,6 +149,13 @@ button{
   margin-bottom: 25px;
 }
 
+/* Results */
+
+.results h3 {
+ font-size: 1em;
+ width: 100%;
+}
+
 /* Miscellaneous */
 
 .logo-link{
