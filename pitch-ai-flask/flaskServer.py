@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from wtforms import Form, validators, FileField
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 import speech_recognition as sr
 import re
 from flask import send_from_directory
@@ -146,7 +146,9 @@ def presentations():
 @app.route("/new", methods=['GET', 'POST'])
 def new_presentation():
     form = ReusableForm(request.form)
+    print("analyze button pressed")
     if request.method == 'POST':
+        print("POST")
         # check if the post request has the file part
         if 'inputFile' not in request.files:
             flash('Error: No file part')
@@ -155,9 +157,11 @@ def new_presentation():
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
+            print("NO SELECTED FILE")
             flash('Error: No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            print("FILE ALLOWED")
             filename = secure_filename(file.filename)
             file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_location)
@@ -167,9 +171,15 @@ def new_presentation():
             flash(" Transcript: " + str(text) + "</br>" +
                 "Like count : " + str(like_count) + "</br>" +
                 "Semantic similarity: " + str(perception(text)))
-            return render_template("results.html", user = USERNAME)
+            print(" Transcript: " + str(text) + "</br>" +
+                "Like count : " + str(like_count) + "</br>" +
+                "Semantic similarity: " + str(perception(text)))
+            return redirect(url_for('results'))
         else:
+            print("ERROR PROCESSING")
             flash('Error: Problem processing the file')
+    else:
+        print("REQUEST method is GET")
     return render_template("new_presentation.html", user = USERNAME, form = form)
 
 @app.route('/record_video')
