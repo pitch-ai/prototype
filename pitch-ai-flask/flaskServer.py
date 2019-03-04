@@ -15,8 +15,11 @@ dirname = os.path.dirname(__file__)
 UPLOAD_FOLDER = os.path.join(dirname, 'data')
 ALLOWED_EXTENSIONS = set(['wav'])
 
-# Hardcoded profile info
+# Hardcoded profile info (not best practice but watevs)
 USERNAME = "Anita"
+CATEGORIES = ""
+EMOTIONS = ""
+FILLER_COUNT = 0
 
 # App config.
 TEMPLATES_AUTO_RELOAD = True
@@ -139,9 +142,16 @@ def get_text_from_speech(audio_file):
 class ReusableForm(Form):
     inputFile = FileField('inputFile:', validators=[validators.required()])
 
+
+# Routes
+
 @app.route("/")
 def presentations():
     return render_template("presentations.html", user = USERNAME)
+
+@app.route('/record_video')
+def record_video():
+    return "Under construction"
 
 @app.route("/new", methods=['GET', 'POST'])
 def new_presentation():
@@ -161,19 +171,19 @@ def new_presentation():
             flash('Error: No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            global FILLER_COUNT
+            global CATEGORIES 
+            global EMOTIONS
             print("FILE ALLOWED")
             filename = secure_filename(file.filename)
             file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_location)
             text = get_text_from_speech(file_location)
-            filler_word ="like"
-            like_count = get_filler_word_count(filler_word,text)
-            flash(" Transcript: " + str(text) + "</br>" +
-                "Like count : " + str(like_count) + "</br>" +
-                "Semantic similarity: " + str(perception(text)))
-            print(" Transcript: " + str(text) + "</br>" +
-                "Like count : " + str(like_count) + "</br>" +
-                "Semantic similarity: " + str(perception(text)))
+            filler_word = "like"
+            FILLER_COUNT = get_filler_word_count(filler_word,text)
+            semantic_response = json.loads(perception(text))
+            CATEGORIES = semantic_response['categories']
+            EMOTIONS = semantic_response['emotions']
             return redirect(url_for('results'))
         else:
             print("ERROR PROCESSING")
@@ -182,46 +192,18 @@ def new_presentation():
         print("REQUEST method is GET")
     return render_template("new_presentation.html", user = USERNAME, form = form)
 
-@app.route('/record_video')
-def record_video():
-    return "Under construction"
-
-@app.route('/results')
-def results():
-    return render_template("results.html", user = USERNAME)   
-
-@app.route('/uploads/<filename>')
+@app.route('/uploads/')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
 
-@app.route("/upload", methods=['GET', 'POST'])
-def upload_file():
-    form = ReusableForm(request.form)
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'inputFile' not in request.files:
-            flash('Error: No file part')
-            return redirect(request.url)
-        file = request.files['inputFile']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '':
-            flash('Error: No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(file_location)
-            text = get_text_from_speech(file_location)
-            filler_word ="like"
-            like_count = get_filler_word_count(filler_word,text)
-            flash(" Transcript: " + str(text) + "</br>" +
-                "Like count : " + str(like_count) + "</br>" +
-                "Semantic similarity: " + str(perception(text)))
-        else:
-            flash('Error: Problem processing the file')
-    return render_template('hello.html', form=form)
+@app.route('/results')
+def results():
+    return render_template("results.html",
+                            user = USERNAME,
+                            emotions = EMOTIONS,
+                            categories = CATEGORIES, 
+                            filler_count = FILLER_COUNT)   
 
 
 if __name__ == "__main__":

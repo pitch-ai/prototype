@@ -23,8 +23,16 @@
    <h3>Results</h3>
    
    <div class="row">
-    <div class="col">Filler words</div>
-    <div class="col">Word clarity</div>
+    <div class="col">
+     {{ filler_count }}
+     <br>
+     Filler words
+    </div>
+    <div class="col">
+     85%
+     <br>
+     Word clarity
+    </div>
    </div>
   </div>
 
@@ -48,20 +56,20 @@
  </div>
 
  <!-- Content -->
- <div class="row">
+ <div class="row container">
   <h3>Content</h3>
-   <div class="col">
-    Your speech has an overall tone of empowermen and joy.
+  <div class="col">
+    Your speech has an overall tone of {{ emotions }}.
    </div>
    <div class="col">
-    We thought your speech was about pineapples, overcoming adversity, and your childhood.
+    We thought your speech was about {{ categories }}.
    </div>
  </div>
 
  <!-- Suggestions -->
- <div class="row">
+ <div class="row container">
    <h3>Suggestions</h3>
-    Try being me expressive with your hands.
+    Try being more expressive with your hands.
   </div>
 
   <a href="#" class="btn" role="button">Practice again</a>
