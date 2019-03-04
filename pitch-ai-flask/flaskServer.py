@@ -174,7 +174,7 @@ def new_presentation():
             print(" Transcript: " + str(text) + "</br>" +
                 "Like count : " + str(like_count) + "</br>" +
                 "Semantic similarity: " + str(perception(text)))
-            return render_template("results.html", user = USERNAME)
+            return redirect(url_for('results'))
         else:
             print("ERROR PROCESSING")
             flash('Error: Problem processing the file')
