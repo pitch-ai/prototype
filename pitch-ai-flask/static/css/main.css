@@ -124,11 +124,10 @@ button{
  }
 
  /* New Presentation */
-
  #upload-loading {
   display: none;
-  position: absolute;
-  top: 25%;
+  position: relative;
+  top: -200px;
  }
 
 #cancel-upload {
