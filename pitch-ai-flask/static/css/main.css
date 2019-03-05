@@ -163,9 +163,19 @@ button{
 
 /* Results */
 
+.results .section {
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #E0E1E2;
+}
+
 .results h3 {
  font-size: 1em;
  width: 100%;
+}
+
+h3.graph {
+  width: initial;
 }
 
 /* Miscellaneous */

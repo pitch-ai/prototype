@@ -17,10 +17,19 @@
 
 <div class="container results">
 
- <div class="row">
+ <div class="row section">
   <!-- Results -->
   <div class="col">
    <h3>Results</h3>
+
+   <div class="row justify-content-between">
+     <div class="col-8">
+       <h4 class="">Speaking novice</h4> 
+     </div>
+     <div class="col-4">
+       <img class="float-right" src="/static/images/rating-scale.png" style="width: 100%">
+     </div>
+   </div>
    
    <div class="row">
     <div class="col">
@@ -43,20 +52,27 @@
   </div>
  </div>
 
- <div class="row">
+ <div class="row section">
   <!-- Pitch over time -->
-  <div class="col">
-   <h3>Pitch over time</h3>
+  <div class="col-6">
+   <h3 class="float-left graph">Pitch over time</h3>
+   <img class="float-right" src="/static/images/okay.png" style="width: 100px">
+   
+   <img class="" src="/static/images/pacing-graph.png" style="width: 100%">
+   
   </div>
 
   <!-- Pacing over time -->
-  <div class="col">
-   <h3>Pacing over time</h3>
+  <div class="col-6">
+    <h3 class="float-left graph">Pacing over time</h3>
+    <img class="float-right" src="/static/images/great.png" style="width: 100px">
+
+   <img class="" src="/static/images/pitch-graph.png" style="width: 100%">
   </div>
  </div>
 
  <!-- Content -->
- <div class="row container">
+ <div class="row container section">
   <h3>Content</h3>
   <div class="col">
     Your speech has an overall tone of {{ emotions }}.
@@ -67,14 +83,37 @@
  </div>
 
  <!-- Suggestions -->
- <div class="row container">
-   <h3>Suggestions</h3>
-    Try being more expressive with your hands.
+ <div class="row container section">
+    <h3>Suggestions</h3>
+    <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Try being more expressive with your hands.</h5>
+        <p class="card-text">Blah blah </p>
+        <a href="#" class="">LEARN MORE</a>
+      </div>
+    </div>
+    </div>
+
+    <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Try being more expressive with your hands.</h5>
+        <p class="card-text">Blah blah </p>
+        <a href="#" class="">LEARN MORE</a>
+      </div>
+    </div>
+    <div>
+    </div>
+    </div>
+
+  </div>
+  
+
+  <div class="row container">
+    <a href="#" class="btn" role="button">Practice again</a>
+    <a href="#"class="btn"  role="button">Done for now</a>
   </div>
 
-  <a href="#" class="btn" role="button">Practice again</a>
-  <a href="#"class="btn"  role="button">Done for now</a>
-
-</div>
 
 {% include "footer.html" %}
