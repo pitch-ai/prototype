@@ -36,6 +36,11 @@ body {
 
 }
 
+/* Set the height for new presentation page? */
+/* #push {
+  height: 230px;
+} */
+
 .spacer{
   margin-top:64px;
 }
@@ -233,11 +238,16 @@ a.results-again {
 
   a.results-again:hover {
     color: white;
+    background: #3239d0;
   }
 
 a.results-done {
   color: #7E7E7E;
 }
+
+  a.results-done:hover {
+    color: black;
+  }
 
 /* Miscellaneous */
 
@@ -267,7 +277,6 @@ a.results-done {
 footer{
   background-color: #fafbfc;
   text-align: center;
-
 
 }
 

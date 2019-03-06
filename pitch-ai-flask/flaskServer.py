@@ -18,7 +18,8 @@ ALLOWED_EXTENSIONS = set(['wav', 'mp4', 'mov'])
 
 # Hardcoded profile info (not best practice but watevs)
 USERNAME = "Oliver"
-CATEGORIES = ""
+CATEGORY = ""
+CONCEPT = ""
 EMOTIONS = ""
 FILLER_COUNT = 0
 
@@ -177,7 +178,8 @@ def new_presentation():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             global FILLER_COUNT
-            global CATEGORIES
+            global CATEGORY
+            global CONCEPTS
             global EMOTIONS
             print("FILE ALLOWED")
 
@@ -195,7 +197,10 @@ def new_presentation():
             filler_word = "like"
             FILLER_COUNT = get_filler_word_count(filler_word,text)
             semantic_response = json.loads(perception(text))
-            CATEGORIES = semantic_response['categories']
+            CATEGORY = semantic_response['categories']
+            CONCEPTS = semantic_response['concepts']
+            print("concepts")
+            print(CONCEPTS)
             EMOTIONS = semantic_response['emotions']
             return redirect(url_for('results'))
         else:
@@ -215,7 +220,8 @@ def results():
     return render_template("results.html",
                             user = USERNAME,
                             emotions = EMOTIONS,
-                            categories = CATEGORIES,
+                            category = CATEGORY,
+                            concepts = CONCEPTS,
                             filler_count = FILLER_COUNT)
 
 
