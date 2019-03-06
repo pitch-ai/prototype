@@ -7,7 +7,7 @@
     <div class="col-md-8">
       <p>Nice! We have a few suggestions to make<br>your presentation even better.</p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" style="padding-top: 9px;">
       <p class="video-meta">
         <i class="fas fa-video" style="opacity:.5"></i> &nbsp; Presentation.mov
         <br>
@@ -51,7 +51,7 @@
   <!-- Watch -->
   <div class="col">
    <h3>Watch</h3>
-   <img class="" src="/static/images/video-screenshot.png" style="width: 100%; border-radius:3px;">
+   <a href="#"><img class="" src="/static/images/video-screenshot.png" style="width: 100%; border-radius:3px;"></a>
   </div>
  </div>
 
@@ -67,8 +67,8 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Try being more expressive with your hands.</h5>
-          <p class="card-text">Using expressive body language can help boost your stage presence and make you appear confident.</p>
-          <a href="#" class="">LEARN MORE</a>
+          <p class="card-text">Using expressive body language can help boost stage presence and make you appear more confident.</p>
+          <a href="#" class="">Learn more</a>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         <div class="card-body">
           <h5 class="card-title">Try holding longer periods of eye contact.</h5>
           <p class="card-text">When a speaker darts their eyes around the room, it becomes harder to gauge an audience’s reaction.</p>
-          <a href="#" class="">LEARN MORE</a>
+          <a href="#" class="">Learn more</a>
         </div>
       </div>
     </div>
@@ -98,16 +98,20 @@
    <h3 class="float-left graph">Pitch over time</h3>
    <img class="float-left" src="/static/images/okay.png" style="width: 100px; margin: -7px 0px 7px 35px">
 
-   <img class="spacer-half spacer-after " src="/static/images/pacing-graph.png" style="width: 100%">
+   <img class="spacer-half spacer-after " src="/static/images/pitch-graph-2.png" style="width: 100%">
+
+   <p>Your pitch had a decent level of variation, but could benefit from a more dynamic range.</p>
 
   </div>
 
   <!-- Pacing over time -->
   <div class="col-6">
     <h3 class="float-left graph">Pacing over time</h3>
-    <img class="float-left" src="/static/images/great.png" style="width: 100px; margin: -7px 0px 7px 35px">
+    <img class="float-left" src="/static/images/okay.png" style="width: 100px; margin: -7px 0px 7px 35px">
 
-   <img class="spacer-half" src="/static/images/pitch-graph.png" style="width: 100%">
+   <img class="spacer-half spacer-after" src="/static/images/pacing-graph-2.png" style="width: 100%">
+
+   <p>Try to keep your pacing steady throughout the presentation.</p>
   </div>
  </div>
 
@@ -118,16 +122,21 @@
 
 
  <!-- Content -->
- <div class="row container section">
+ <div class="row container section" style="margin-bottom:100px">
   <h3>Content</h3>
-  <div class="col">
-    Your speech has an overall tone of {{ emotions }}.
+  <div class="col card-col" style="margin-right:60px;">
+    <h1>Your speech has an overall tone of {{ emotions }}.<br><span style="color:white">h<span></h1>
+    <br>
+    <a class="link-upper" href="#" class="">How can I improve my tone?</a>
    </div>
    <div class="col">
-      We thought your speech was about <span style="text-transform: lowercase;">
+      <h1>We thought your speech was about <span style="text-transform: lowercase;">
         {{ concepts[0] }}, {{ concepts[1] }}, or {{ concepts[2] }}.
-      </span>
+      </span></h1>
+      <br>
+      <a class="link-upper" href="#" class="">Not what you were aiming for?</a>
    </div>
+
  </div>
 </div>
 

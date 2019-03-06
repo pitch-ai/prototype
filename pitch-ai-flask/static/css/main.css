@@ -287,6 +287,10 @@ footer{
 
 }
 
+.link-upper{
+  font-weight: 500;
+}
+
 /* Card styling */
 
 .card-col{
