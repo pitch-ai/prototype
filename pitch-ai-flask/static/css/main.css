@@ -226,10 +226,14 @@ a.results-done, a.results-again {
   padding-right: 40px;
 }
 
-.results-again {
+a.results-again {
   background: #3F47F5;
   color: white;
 }
+
+  a.results-again:hover {
+    color: white;
+  }
 
 a.results-done {
   color: #7E7E7E;
