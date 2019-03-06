@@ -26,14 +26,14 @@
      <form  action="" enctype="multipart/form-data" method="post" role="form">
      {{ form.csrf }}
       <div id="uploadPresentation">
-      <input type="file" class="card form-control" id="inputFile" name="inputFile" style="display: none">
+        <input type="file" class="card form-control" id="inputFile" name="inputFile" style="display: none">
        <div class="card-wrapper" >
          <div class="card-start">
            <div class="col-4" style="margin-left:50px;">
-            <img style="width:125px" src="static/images/upload.svg" alt="Card image cap">
+            <img id="upload-img" style="width:125px" src="static/images/upload.svg" alt="Card image cap">
            </div>
            <div class="col-8">
-            <h1>Upload a video or audio file</h1>
+            <h1 id="upload-text">Upload a video or audio file</h1>
            </div>
          </div>
        </div>
@@ -46,7 +46,7 @@
     <div class="col">
      <a href="{{ url_for('record_video') }}">
       
-        <div class="card-wrapper" id="uploadPresentation">
+        <div class="card-wrapper">
           <div class="card-start">
 
             <div class="col-4" style="margin-left:50px;">
