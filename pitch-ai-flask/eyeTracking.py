@@ -4,6 +4,9 @@ import dlib
 import matplotlib.pyplot as pyplot
 from math import hypot
 
+
+## Constants ##
+# May need to edit these as needed depending on our demo
 REGION_FRACTION_H = 0.4
 REGION_FRACTION_V = 0.45
 RIGHT_THRESH = 0.7
@@ -12,6 +15,11 @@ TOP_THRESH = 0.1
 BOTTOM_THRESH = 0.4
 USER_FRAME_TEST = 200
 
+# Takes a filename for a video file
+# Will generate basic stats for where the user is looking per frame.
+# Horizontal and vertical are independently calculated.
+# If filename is None, this method uses the webcam/internal laptop camera
+# and only records 200 frames before returning (for debugging)
 def analyzeEyeMovement(filename):
     if not filename:
         filename = 0
@@ -74,6 +82,13 @@ def analyzeEyeMovement(filename):
             startangle=90)
         pyplot.axis('equal')
         pyplot.show()
+
+        # TODO:
+        # Use matplotlib gradients to shade areas of image
+        # Draw matplotlib on screenshot for Oliver's speech (final frame)
+
+        # When this is used for flask, uncomment (probably)
+        # return stats
     except Exception as err:
         print err
         return
@@ -81,7 +96,7 @@ def analyzeEyeMovement(filename):
 def midpoint(p1 ,p2):
     return int((p1.x + p2.x)/2), int((p1.y + p2.y)/2)
 
-
+# Gets a gaze ratio for a particular eye
 def get_gaze_ratio(eye_points, facial_landmarks, frame, gray):
     eye_region = np.array([(facial_landmarks.part(eye_points[0]).x, facial_landmarks.part(eye_points[0]).y),
                            (facial_landmarks.part(eye_points[1]).x, facial_landmarks.part(eye_points[1]).y),

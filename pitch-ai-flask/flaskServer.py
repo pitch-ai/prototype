@@ -4,6 +4,7 @@ from werkzeug import secure_filename
 import speech_recognition as sr
 import re
 from flask import send_from_directory
+from eyeTracking import analyzeEyeMovement
 import os
 import urllib
 import urllib2
@@ -13,7 +14,7 @@ import requests
 
 dirname = os.path.dirname(__file__)
 UPLOAD_FOLDER = os.path.join(dirname, 'data')
-ALLOWED_EXTENSIONS = set(['wav'])
+ALLOWED_EXTENSIONS = set(['wav', 'avi', 'mp4'])
 
 # App config.
 DEBUG = True
@@ -162,6 +163,8 @@ def upload_file():
             file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_location)
             text = get_text_from_speech(file_location)
+            # TODO: Convert to audio file for text from speech
+            # eye_stats = analyzeEyeMovement(file_location)
             filler_word ="like"
             like_count = get_filler_word_count(filler_word,text)
             flash(" Transcript: " + str(text) + "</br>" +
