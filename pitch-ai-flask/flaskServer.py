@@ -10,10 +10,11 @@ import urllib2
 import json
 import base64
 import requests
+import subprocess
 
 dirname = os.path.dirname(__file__)
 UPLOAD_FOLDER = os.path.join(dirname, 'data')
-ALLOWED_EXTENSIONS = set(['wav'])
+ALLOWED_EXTENSIONS = set(['wav', 'mp4', 'mov'])
 
 # Hardcoded profile info (not best practice but watevs)
 USERNAME = "Oliver"
@@ -28,6 +29,10 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def video_to_audio(video_file):
+    command = 'ffmpeg -i "' + video_file + '" -ab 160k -ac 2 -ar 44100 -vn "data/youtube_sample_converted.wav"'
+    subprocess.call(command, shell=True)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -175,10 +180,16 @@ def new_presentation():
             global CATEGORIES
             global EMOTIONS
             print("FILE ALLOWED")
+
             filename = secure_filename(file.filename)
             file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_location)
-            text = get_text_from_speech(file_location)
+
+            video_to_audio(file_location)
+            
+            hardcoded_audio = 'data/youtube_sample_converted.wav'
+
+            text = get_text_from_speech(hardcoded_audio)
             filler_word = "like"
             FILLER_COUNT = get_filler_word_count(filler_word,text)
             semantic_response = json.loads(perception(text))
