@@ -16,7 +16,7 @@ UPLOAD_FOLDER = os.path.join(dirname, 'data')
 ALLOWED_EXTENSIONS = set(['wav'])
 
 # Hardcoded profile info (not best practice but watevs)
-USERNAME = "Anita"
+USERNAME = "Oliver"
 CATEGORIES = ""
 EMOTIONS = ""
 FILLER_COUNT = 0
@@ -172,7 +172,7 @@ def new_presentation():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             global FILLER_COUNT
-            global CATEGORIES 
+            global CATEGORIES
             global EMOTIONS
             print("FILE ALLOWED")
             filename = secure_filename(file.filename)
@@ -202,8 +202,8 @@ def results():
     return render_template("results.html",
                             user = USERNAME,
                             emotions = EMOTIONS,
-                            categories = CATEGORIES, 
-                            filler_count = FILLER_COUNT)   
+                            categories = CATEGORIES,
+                            filler_count = FILLER_COUNT)
 
 
 if __name__ == "__main__":

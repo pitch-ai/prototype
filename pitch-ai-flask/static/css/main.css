@@ -147,6 +147,10 @@ button{
   padding-right: 0;
  }
 
+ .presentations{
+   margin-bottom:64px;
+ }
+
  /* New Presentation */
  #upload-loading {
   display: none;
@@ -255,6 +259,10 @@ footer{
 
 .card-body{
   margin:35px;
+}
+
+.card-body-home{
+  margin-top:16px;
 }
 
 .card-title{
