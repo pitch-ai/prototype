@@ -31,7 +31,7 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def video_to_audio(video_file):
-    command = 'ffmpeg -i "' + video_file + '" -ab 160k -ac 2 -ar 44100 -vn "data/youtube_sample_converted.wav"'
+    command = 'ffmpeg -i "' + video_file + '" -ab 160k -ac 2 -ar 44100 -vn "data/Presentation.wav"'
     subprocess.call(command, shell=True)
 
 def allowed_file(filename):
@@ -185,11 +185,13 @@ def new_presentation():
             file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_location)
 
+            print(file_location)
             video_to_audio(file_location)
             
-            hardcoded_audio = 'data/youtube_sample_converted.wav'
+            hardcoded_audio = 'data/Presentation.wav'
 
             text = get_text_from_speech(hardcoded_audio)
+            print(text)
             filler_word = "like"
             FILLER_COUNT = get_filler_word_count(filler_word,text)
             semantic_response = json.loads(perception(text))
