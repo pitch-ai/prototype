@@ -17,30 +17,29 @@
 
 <div class="container results">
 
- <div class="row section">
+ <div class="row section spacer">
   <!-- Results -->
   <div class="col">
    <h3>Results</h3>
 
    <div class="row justify-content-between">
      <div class="col-8">
-       <h4 class="">Speaking novice</h4> 
+       <h1 class="numbers" style="padding-top:15px">Speaking novice</h1>
      </div>
      <div class="col-4">
-       <img class="float-right" src="/static/images/rating-scale.png" style="width: 100%">
+       <img class="float-right" src="/static/images/rating-scale.png" style="width: 224px;">
      </div>
    </div>
-   
-   <div class="row">
-    <div class="col">
-     {{ filler_count }}
-     <br>
-     Filler words
+
+   <div class="row spacer">
+    <div class="col-5 filler-border">
+     <h1 class="numbers">{{ filler_count }}</h1>
+     <h2 class="results-names">Filler words</h2>
     </div>
-    <div class="col">
-     85%
-     <br>
-     Word clarity
+    <div class="col-1"></div>
+    <div class="col-6">
+     <h1 class="numbers">85%</h1>
+     <h2 class="results-names">Word clarity</h2>
     </div>
    </div>
   </div>
@@ -48,18 +47,18 @@
   <!-- Watch -->
   <div class="col">
    <h3>Watch</h3>
-   <img class="" src="/static/images/video-screenshot.png" style="width: 100%">   
+   <img class="" src="/static/images/video-screenshot.png" style="width: 100%">
   </div>
  </div>
 
- <div class="row section">
+ <div class="row section spacer">
   <!-- Pitch over time -->
   <div class="col-6">
    <h3 class="float-left graph">Pitch over time</h3>
    <img class="float-right" src="/static/images/okay.png" style="width: 100px">
-   
-   <img class="" src="/static/images/pacing-graph.png" style="width: 100%">
-   
+
+   <img class="spacer-half spacer-after " src="/static/images/pacing-graph.png" style="width: 100%">
+
   </div>
 
   <!-- Pacing over time -->
@@ -67,31 +66,81 @@
     <h3 class="float-left graph">Pacing over time</h3>
     <img class="float-right" src="/static/images/great.png" style="width: 100px">
 
-   <img class="" src="/static/images/pitch-graph.png" style="width: 100%">
+   <img class="spacer-half" src="/static/images/pitch-graph.png" style="width: 100%">
   </div>
  </div>
 
- <!-- Suggestions -->
- <div class="row container section">
-    <h3>Suggestions</h3>
-    <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Try being more expressive with your hands.</h5>
-        <p class="card-text">Blah blah </p>
-        <a href="#" class="">LEARN MORE</a>
+
+
+
+ <div class="row section spacer">
+   
+  <!-- Pitch over time -->
+  <div class="col">
+    <div class="col card-col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Try being more expressive with your hands.</h5>
+          <p class="card-text">Blah blah </p>
+          <a href="#" class="">LEARN MORE</a>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- Pacing over time -->
+  <div class="col">
+    <div class="col card-col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Try being more expressive with your hands.</h5>
+          <p class="card-text">Blah blah </p>
+          <a href="#" class="">LEARN MORE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Suggestions -->
+ <div class="row container section spacer">
+    <h3>Suggestions</h3>
+    <div class="col-6 card-col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Try being more expressive with your hands.</h5>
+          <p class="card-text">Blah blah </p>
+          <a href="#" class="">LEARN MORE</a>
+        </div>
+      </div>
     </div>
 
-    <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Try being more expressive with your hands.</h5>
-        <p class="card-text">Blah blah </p>
-        <a href="#" class="">LEARN MORE</a>
+    <div class="col-6 card-col">
+      <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title">Try being more expressive with your hands.</h5>
+          <p class="card-text">Blah blah </p>
+          <a href="#" class="">LEARN MORE</a>
+        </div>
       </div>
-    </div>
     <div>
     </div>
     </div>
@@ -108,7 +157,7 @@
     We thought your speech was about {{ categories }}.
    </div>
  </div>
-  
+
 
   <div class="row container">
     <a href="#" class="btn" role="button">Practice again</a>
@@ -116,4 +165,4 @@
   </div>
 
 
-{% include "footer.html" %}
+<!-- {% include "footer.html" %} -->

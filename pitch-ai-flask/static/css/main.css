@@ -36,6 +36,31 @@ body {
 
 }
 
+.spacer{
+  margin-top:64px;
+}
+
+.spacer-half{
+  margin-top: 32px;
+}
+
+.spacer-after{
+  margin-bottom:32px;
+}
+
+
+.numbers{
+ font-size: 2.1em;
+}
+
+.results-names{
+  font-size:1.6em;
+}
+
+.filler-border{
+  border-right: 1px solid var(--border-gray);
+}
+
 h1 {
  font-size: 1.3em;
 }
@@ -218,6 +243,19 @@ footer{
 }
 
 /* Card styling */
+
+.card-col{
+  padding:0px !important;
+  width: 100%;
+}
+
+.card-body{
+  margin:35px;
+}
+
+.card-title{
+
+}
 
 .card-start{
   border: 2px solid #eaecef;
