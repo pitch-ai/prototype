@@ -36,10 +36,11 @@ body {
 
 }
 
+
 /* Set the height for new presentation page? */
-/* #push {
-  height: 230px;
-} */
+.push {
+  height: 190px;
+}
 
 .spacer{
   margin-top:64px;

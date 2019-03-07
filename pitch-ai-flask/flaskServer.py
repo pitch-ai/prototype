@@ -19,7 +19,7 @@ ALLOWED_EXTENSIONS = set(['wav', 'mp4', 'mov'])
 # Hardcoded profile info (not best practice but watevs)
 USERNAME = "Oliver"
 CATEGORY = ""
-CONCEPT = ""
+CONCEPTS = ""
 EMOTIONS = ""
 FILLER_COUNT = 0
 
