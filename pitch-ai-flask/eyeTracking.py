@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import dlib
 import matplotlib.pyplot as pyplot
+import matplotlib.patches as patches
 from math import hypot
 
 
@@ -11,8 +12,8 @@ REGION_FRACTION_H = 0.4
 REGION_FRACTION_V = 0.45
 RIGHT_THRESH = 0.7
 LEFT_THRESH = 2
-TOP_THRESH = 0.1
-BOTTOM_THRESH = 0.4
+TOP_THRESH = 0.05
+BOTTOM_THRESH = 0.5
 USER_FRAME_TEST = 200
 
 # Takes a filename for a video file
@@ -24,74 +25,75 @@ def analyzeEyeMovement(filename):
     if not filename:
         filename = 0
 
-    try:
-        cap = cv2.VideoCapture(filename)
-        detector = dlib.get_frontal_face_detector()
-        predictor = dlib.shape_predictor("../data/shape_predictor_68_face_landmarks.dat")
-        stats = {'center_h': 0, 'center_v': 0, 'left': 0, 'right': 0, 'top': 0, 'bottom': 0}
-        frame_count = 0
-        while cap.isOpened() or filename == 0:
-            _, frame = cap.read()
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            faces = detector(gray)
-            for face in faces:
-                landmarks = predictor(gray, face)
-                gzl_h, gzl_v = get_gaze_ratio(
-                    [36, 37, 38, 39, 40, 41], landmarks, frame, gray)
-                gzr_h, gzr_v = get_gaze_ratio(
-                    [42, 43, 44, 45, 46, 47], landmarks, frame, gray)
-                gz_h = (gzl_h + gzr_h) / 2
-                gz_v = (gzl_v + gzr_v) / 2
-                if gz_h <= RIGHT_THRESH:
-                    print 'RIGHT %f' % gz_h
-                    stats['right'] += 1
-                elif gz_h >= LEFT_THRESH:
-                    print 'LEFT %f' % gz_h
-                    stats['left'] += 1
-                else:
-                    print 'CENTER_H'
-                    stats['center_h'] += 1
+    cap = cv2.VideoCapture(filename)
+    detector = dlib.get_frontal_face_detector()
+    predictor = dlib.shape_predictor("../data/shape_predictor_68_face_landmarks.dat")
+    stats = {'center_h': 0, 'center_v': 0, 'left': 0, 'right': 0, 'top': 0, 'bottom': 0}
+    frame_count = 0
+    displayFrame = None
+    while cap.isOpened() or filename == 0:
+        _, frame = cap.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = detector(gray)
+        for face in faces:
+            landmarks = predictor(gray, face)
+            gzl_h, gzl_v = get_gaze_ratio(
+                [36, 37, 38, 39, 40, 41], landmarks, frame, gray)
+            gzr_h, gzr_v = get_gaze_ratio(
+                [42, 43, 44, 45, 46, 47], landmarks, frame, gray)
+            gz_h = (gzl_h + gzr_h) / 2
+            gz_v = (gzl_v + gzr_v) / 2
+            if gz_h <= RIGHT_THRESH:
+                stats['right'] += 1
+            elif gz_h >= LEFT_THRESH:
+                stats['left'] += 1
+            else:
+                stats['center_h'] += 1
 
-                if gz_v <= TOP_THRESH:
-                    print 'TOP %f' % gz_v
-                    stats['top'] += 1
-                elif gz_v >= BOTTOM_THRESH:
-                    print 'BOTTOM %f' % gz_v
-                    stats['bottom'] += 1
-                else:
-                    print 'CENTER_V'
-                    stats['center_v'] += 1
+            if gz_v <= TOP_THRESH:
+                stats['top'] += 1
+            elif gz_v >= BOTTOM_THRESH:
+                stats['bottom'] += 1
+            else:
+                stats['center_v'] += 1
 
-            if frame_count >= USER_FRAME_TEST and filename == 0:
-                print 'Exiting...'
-                break
+        if frame_count >= USER_FRAME_TEST and filename == 0:
+            print 'Exiting...'
+            displayFrame = frame
+            break
 
-            frame_count += 1
+        frame_count += 1
 
-        cap.release()
-        pyplot.figure(0)
-        pyplot.pie([stats['center_h'], stats['left'], stats['right']],
-            labels=['center', 'left', 'right'],
-            autopct='%1.2f',
-            startangle=90)
-        pyplot.axis('equal')
-        pyplot.figure(1)
-        pyplot.pie([stats['center_v'], stats['top'], stats['bottom']],
-            labels=['center', 'top', 'bottom'],
-            autopct='%1.2f',
-            startangle=90)
-        pyplot.axis('equal')
-        pyplot.show()
+        cv2.imshow("Feed", frame)
+        key = cv2.waitKey(1)
 
-        # TODO:
-        # Use matplotlib gradients to shade areas of image
-        # Draw matplotlib on screenshot for Oliver's speech (final frame)
-
-        # When this is used for flask, uncomment (probably)
-        # return stats
-    except Exception as err:
-        print err
-        return
+    cap.release()
+    stats['top'] /= (1.0 * frame_count)
+    stats['bottom'] /= (1.0 * frame_count)
+    stats['left'] /= (1.0 * frame_count)
+    stats['right'] /= (1.0 * frame_count)
+    print stats
+    height, width, _ = displayFrame.shape
+    fig, ax = pyplot.subplots(1)
+    im2 = displayFrame.copy()
+    im2[:, :, 0] = displayFrame[:, :, 2]
+    im2[:, :, 2] = displayFrame[:, :, 0]
+    ax.imshow(im2)
+    # Right
+    ax.add_patch(patches.Rectangle((0, 0), width / 6, height,
+        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['right']))
+    # Left
+    ax.add_patch(patches.Rectangle((5 * width / 6, 0), width / 6, height,
+        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['left']))
+    # Bottom
+    ax.add_patch(patches.Rectangle((width / 6, 5 * height / 6), 4 * width / 6, height / 6,
+        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['bottom']))
+    # Top
+    ax.add_patch(patches.Rectangle((width / 6, 0), 4 * width / 6, height / 6,
+        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['top']))
+    pyplot.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
+    pyplot.tick_params(axis='y', which='both', right=False, left=False, labelleft=False)
+    pyplot.show()
 
 def midpoint(p1 ,p2):
     return int((p1.x + p2.x)/2), int((p1.y + p2.y)/2)
