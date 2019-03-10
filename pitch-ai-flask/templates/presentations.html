@@ -1,0 +1,99 @@
+{% include "header.html" %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container blue-header">
+    <p>Welcome back, {{ user }}!</p>
+    <p>What are you going to practice today?</p>
+  </div>
+</div>
+
+<div class="container presentations tester">
+  <h1 class="presentation-header">My presentations</h1>
+  <div class="row ">
+    <div class="col-md-4">
+      <div class="card">
+       <a href="{{ url_for('new_presentation') }}">
+         <div class="card-wrapper">
+           <div class="card-start">
+
+             <img class="plus" src="/static/images/plus-gray.svg">
+
+           </div>
+         </div>
+       </a>
+       <div class="card-body-home">
+        <h2>Start a new presentation</h2>
+       </div>
+     </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <!-- <div class="outlined-card" id="pink-2"></div> -->
+        <div class="card-wrapper">
+          <div class="card-image" id="pink"></div>
+        </div>
+        <!-- <img class="presentation-card" src="static/images/circuit.svg" alt="Card image cap"> -->
+
+        <div class="card-body-home">
+         <h2><i class="gray fas fa-video"></i>&nbsp; Physics presentation</h2>
+        </div>
+      </div>
+   </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-wrapper">
+          <div class="card-image" id="pink-2"></div>
+        </div>
+        <div class="card-body-home">
+         <h2><i class="gray fas fa-video"></i>&nbsp; COMM220 final</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+
+
+ <div class="container presentations">
+   <h1 class="course-header">Course packs</h1>
+   <div class="row ">
+     <div class="col-md-4">
+       <div class="card">
+        <a href="{{ url_for('new_presentation') }}">
+          <div class="card-wrapper">
+            <div class="card-image" id="yellow-1"></div>
+          </div>
+        </a>
+        <div class="card-body-home">
+         <h2>Fight your filler words</h2>
+        </div>
+      </div>
+     </div>
+     <div class="col-md-4">
+       <div class="card">
+         <div class="card-wrapper">
+           <div class="card-image" id="yellow-2"></div>
+         </div>
+         <div class="card-body-home">
+          <h2>Speak with confidence</h2>
+         </div>
+       </div>
+    </div>
+     <div class="col-md-4">
+       <div class="card">
+         <div class="card-wrapper">
+           <div class="card-image" id="yellow-3"></div>
+         </div>
+         <div class="card-body-home">
+          <h2>Project your voice</h2>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>
+
+
+
+{% include "footer.html" %}

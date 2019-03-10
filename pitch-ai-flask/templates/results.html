@@ -1,0 +1,162 @@
+{% include "header.html" %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container blue-header">
+   <div class="row">
+    <div class="col-md-8">
+      <p>Nice! We have a few suggestions to make<br>your presentation even better.</p>
+    </div>
+    <div class="col-md-4" style="padding-top: 9px;">
+      <p class="video-meta">
+        <i class="fas fa-video" style="opacity:.5"></i> &nbsp; Presentation.mov
+        <br>
+        <i class="fas fa-clock" style="opacity:.5"></i> &nbsp; 30s
+      </p>
+    </div>
+   </div>
+    <!-- <p>What are you going to practice today?</p> -->
+  </div>
+</div>
+
+<div class="container results">
+
+ <div class="row section spacer">
+  <!-- Results -->
+  <div class="col">
+   <h3>Results</h3>
+
+   <div class="row justify-content-between">
+     <div class="col-6">
+       <h1 class="numbers" style="padding-top:15px">Speaking novice</h1>
+     </div>
+     <div class="col-6">
+       <img class="float-left" src="/static/images/rating-scale-3.png" style="width: 224px; padding-top:14px;">
+     </div>
+   </div>
+
+   <div class="row spacer">
+    <div class="col-5 filler-border">
+     <h1 class="numbers">{{ filler_count }}</h1>
+     <h2 class="results-names">Filler words</h2>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-6">
+     <h1 class="numbers">85%</h1>
+     <h2 class="results-names">Word clarity</h2>
+    </div>
+   </div>
+  </div>
+
+  <!-- Watch -->
+  <div class="col">
+   <h3>Watch</h3>
+   <a href="#"><img class="" src="/static/images/video-screenshot.png" style="width: 100%; border-radius:3px;"></a>
+  </div>
+ </div>
+
+
+
+ <div class="row section spacer " style="margin-bottom:64px">
+
+  <!-- Pitch over time -->
+  <h3 style="padding-left:15px; padding-bottom:10px;">Suggestions</h3>
+  <div class="col">
+
+    <div class="col card-col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Try being more expressive with your hands.</h5>
+          <p class="card-text">Using expressive body language can help boost stage presence and make you appear more confident.</p>
+          <a href="#" class="">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pacing over time -->
+  <div class="col">
+    <div class="col card-col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Try holding longer periods of eye contact.</h5>
+          <p class="card-text">When a speaker darts their eyes around the room, it becomes harder to gauge an audience’s reaction.</p>
+          <a href="#" class="">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
+
+
+
+
+ <div class="row section spacer">
+  <!-- Pitch over time -->
+  <div class="col-6">
+   <h3 class="float-left graph">Pitch over time</h3>
+   <img class="float-left" src="/static/images/okay.png" style="width: 100px; margin: -7px 0px 7px 35px">
+
+   <img class="spacer-half spacer-after " src="/static/images/pitch-graph-2.png" style="width: 100%; padding-top:2px;">
+
+   <p>Your pitch had a decent level of variation, but could benefit from a more dynamic range.</p>
+
+  </div>
+
+  <!-- Pacing over time -->
+  <div class="col-6">
+    <h3 class="float-left graph">Pacing over time</h3>
+    <img class="float-left" src="/static/images/okay.png" style="width: 100px; margin: -7px 0px 7px 35px">
+
+   <img class="spacer-half spacer-after" src="/static/images/pacing-graph-2.png" style="width: 100%">
+
+   <p>Try to keep your pacing steady throughout the presentation.</p>
+  </div>
+ </div>
+
+
+
+
+
+
+
+ <!-- Content -->
+ <div class="row container section" style="margin-bottom:100px">
+  <h3>Content</h3>
+  <div class="col card-col" style="margin-right:60px;">
+    <h1>Your speech has an overall tone of {{ emotions }}.<br><span style="color:white">h<span></h1>
+    <br>
+    <a class="link-upper" href="#" class="">How can I improve my tone?</a>
+   </div>
+   <div class="col">
+      <h1>We thought your speech was about <span style="text-transform: lowercase;">
+        {{ concepts[0] }}.
+      </span></h1>
+      <br>
+      <a class="link-upper" href="#" class="">Not what you were aiming for?</a>
+   </div>
+
+ </div>
+</div>
+
+<div class="results-footer align-middle">
+  <div class="container">
+    <a href="/new" class="btn results-again" role="button">Practice again</a>
+    <a href="#"class="btn results-done"  role="button">Done for now</a>
+  </div>
+</div>
+
+
+</body>
+
+<script src="static/js/jquery-3.3.1.min.js"></script>
+<script src="static/js/anime.min.js"></script>
+<script src="static/js/script.js"></script>
+<script type="text/javascript">
+ console.log("hello");
+
+</script>
+
+</script>
+</html>

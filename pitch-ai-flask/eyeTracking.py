@@ -3,6 +3,7 @@ import numpy as np
 import dlib
 import matplotlib.pyplot as pyplot
 import matplotlib.patches as patches
+import time
 from math import hypot
 
 
@@ -22,19 +23,19 @@ USER_FRAME_TEST = 200
 # If filename is None, this method uses the webcam/internal laptop camera
 # and only records 200 frames before returning (for debugging)
 def analyzeEyeMovement(filename):
-    if not filename:
-        filename = 0
-
     cap = cv2.VideoCapture(filename)
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("../data/shape_predictor_68_face_landmarks.dat")
-    stats = {'center_h': 0, 'center_v': 0, 'left': 0, 'right': 0, 'top': 0, 'bottom': 0}
+    stats = {}
     frame_count = 0
-    displayFrame = None
-    while cap.isOpened() or filename == 0:
-        _, frame = cap.read()
+    while cap.isOpened():
+        exists, frame = cap.read()
+        if not exists:
+            break
+        
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = detector(gray)
+        timestamp = str(cap.get(cv2.CAP_PROP_POS_MSEC))
         for face in faces:
             landmarks = predictor(gray, face)
             gzl_h, gzl_v = get_gaze_ratio(
@@ -43,57 +44,24 @@ def analyzeEyeMovement(filename):
                 [42, 43, 44, 45, 46, 47], landmarks, frame, gray)
             gz_h = (gzl_h + gzr_h) / 2
             gz_v = (gzl_v + gzr_v) / 2
+            stats[timestamp] = []
+
             if gz_h <= RIGHT_THRESH:
-                stats['right'] += 1
+                stats[timestamp].append('right')
             elif gz_h >= LEFT_THRESH:
-                stats['left'] += 1
+                stats[timestamp].append('left')
             else:
-                stats['center_h'] += 1
+                stats[timestamp].append('center_h')
 
             if gz_v <= TOP_THRESH:
-                stats['top'] += 1
+                stats[timestamp].append('top')
             elif gz_v >= BOTTOM_THRESH:
-                stats['bottom'] += 1
+                stats[timestamp].append('bottom')
             else:
-                stats['center_v'] += 1
-
-        if frame_count >= USER_FRAME_TEST and filename == 0:
-            print 'Exiting...'
-            displayFrame = frame
-            break
-
-        frame_count += 1
-
-        cv2.imshow("Feed", frame)
-        key = cv2.waitKey(1)
+                stats[timestamp].append('center_v')
 
     cap.release()
-    stats['top'] /= (1.0 * frame_count)
-    stats['bottom'] /= (1.0 * frame_count)
-    stats['left'] /= (1.0 * frame_count)
-    stats['right'] /= (1.0 * frame_count)
-    print stats
-    height, width, _ = displayFrame.shape
-    fig, ax = pyplot.subplots(1)
-    im2 = displayFrame.copy()
-    im2[:, :, 0] = displayFrame[:, :, 2]
-    im2[:, :, 2] = displayFrame[:, :, 0]
-    ax.imshow(im2)
-    # Right
-    ax.add_patch(patches.Rectangle((0, 0), width / 6, height,
-        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['right']))
-    # Left
-    ax.add_patch(patches.Rectangle((5 * width / 6, 0), width / 6, height,
-        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['left']))
-    # Bottom
-    ax.add_patch(patches.Rectangle((width / 6, 5 * height / 6), 4 * width / 6, height / 6,
-        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['bottom']))
-    # Top
-    ax.add_patch(patches.Rectangle((width / 6, 0), 4 * width / 6, height / 6,
-        linewidth=1, edgecolor='r', facecolor='r', alpha=stats['top']))
-    pyplot.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
-    pyplot.tick_params(axis='y', which='both', right=False, left=False, labelleft=False)
-    pyplot.show()
+    return stats
 
 def midpoint(p1 ,p2):
     return int((p1.x + p2.x)/2), int((p1.y + p2.y)/2)
@@ -148,4 +116,9 @@ def get_gaze_ratio(eye_points, facial_landmarks, frame, gray):
     return gaze_ratio_h, gaze_ratio_v
 
 if __name__ == '__main__':
-    analyzeEyeMovement(None)
+    start = time.time()
+    print(start)
+    analyzeEyeMovement('../data/Presentation.mov')
+    end = time.time()
+    print(end)
+    print(end - start)
