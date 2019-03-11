@@ -203,8 +203,9 @@ def new_presentation():
             print(CONCEPTS)
             EMOTIONS = semantic_response['emotions']
             # Don't uncomment this until dlib, opencv are installed
-            # EYEMOVEMENT = analyzeEyeMovement(file_location)
-            print("Finished eye movement")
+            # This returns the filepath to the saved image of the results
+            # Just populate the src field of the img
+            EYEMOVEMENT = analyzeEyeMovement(file_location)
             return redirect(url_for('results'))
         else:
             print("ERROR PROCESSING")
@@ -225,7 +226,8 @@ def results():
                             emotions = EMOTIONS,
                             category = CATEGORY,
                             concepts = CONCEPTS,
-                            filler_count = FILLER_COUNT)
+                            filler_count = FILLER_COUNT,
+                            eye_movement_image = EYEMOVEMENT)
 
 
 if __name__ == "__main__":
