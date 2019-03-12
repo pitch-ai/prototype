@@ -81,7 +81,25 @@
         <div class="card-body">
           <h5 class="card-title">Try holding longer periods of eye contact.</h5>
           <p class="card-text">When a speaker darts their eyes around the room, it becomes harder to gauge an audience’s reaction.</p>
-          <a href="#" class="">Learn more</a>
+          <a href="#" class="" data-toggle="modal" data-target="#eyeMovementModal">Learn more</a>
+          <div class="modal fade" id="eyeMovementModal" tabindex="-1" role="dialog" aria-labelledby="eyeMovementModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Eye contact over time</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img class="spacer-half spacer-after " src="{{ eye_movement_image }}" style="width: 100%; padding-top:2px;">
+                </div>
+                <div class="modal-footer">
+                  <a href="#" class="btn btn-simple" data-dismiss="modal">Close</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -147,7 +165,7 @@
 <div class="results-footer align-middle">
   <div class="container">
     <a href="/new" class="btn results-again" role="button">Practice again</a>
-    <a href="#"class="btn results-done"  role="button">Done for now</a>
+    <a href="#"class="btn btn-simple"  role="button">Done for now</a>
   </div>
 </div>
 
@@ -155,6 +173,7 @@
 </body>
 
 <script src="static/js/jquery-3.3.1.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/anime.min.js"></script>
 <script src="static/js/script.js"></script>
 <script type="text/javascript">
