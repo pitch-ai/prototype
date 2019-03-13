@@ -226,7 +226,7 @@ h3.graph {
   width: 100%;
 }
 
-a.results-done, a.results-again {
+a.btn-simple, a.results-again {
   margin: 10px 0;
   padding-left: 40px;
   padding-right: 40px;
@@ -242,11 +242,11 @@ a.results-again {
     background: #3239d0;
   }
 
-a.results-done {
+a.btn-simple {
   color: #7E7E7E;
 }
 
-  a.results-done:hover {
+  a.btn-simple:hover {
     color: black;
   }
 
