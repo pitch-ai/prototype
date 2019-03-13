@@ -207,7 +207,7 @@ def new_presentation():
             # Just populate the src field of the img
 
             # EYEMOVEMENT = analyzeEyeMovement(file_location)
-            delete = 'rm static/images/eyemovement.png'
+            # delete = 'rm static/images/eyemovement.png'
             command = 'python3 eyeTracking.py ' + file_location
             subprocess.call(delete, shell=True)
             subprocess.call(command, shell=True)
