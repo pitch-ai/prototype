@@ -209,7 +209,7 @@ def new_presentation():
             # EYEMOVEMENT = analyzeEyeMovement(file_location)
             # delete = 'rm static/images/eyemovement.png'
             command = 'python3 eyeTracking.py ' + file_location
-            subprocess.call(delete, shell=True)
+            # subprocess.call(delete, shell=True)
             subprocess.call(command, shell=True)
 
 
