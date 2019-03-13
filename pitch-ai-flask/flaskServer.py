@@ -17,7 +17,7 @@ UPLOAD_FOLDER = os.path.join(dirname, 'data')
 ALLOWED_EXTENSIONS = set(['wav', 'mp4', 'mov'])
 
 # Hardcoded profile info (not best practice but watevs)
-USERNAME = "Oliver"
+USERNAME = "Billy"
 CATEGORY = ""
 CONCEPTS = ""
 EMOTIONS = ""
@@ -32,7 +32,7 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def video_to_audio(video_file):
-    command = 'ffmpeg -i "' + video_file + '" -ab 160k -ac 2 -ar 44100 -vn "data/Presentation.wav"'
+    command = 'ffmpeg -i "' + video_file + '" -ab 160k -ac 2 -ar 44100 -vn "data/Presentation.wav" -y'
     subprocess.call(command, shell=True)
 
 def allowed_file(filename):
@@ -205,7 +205,15 @@ def new_presentation():
             # Don't uncomment this until dlib, opencv are installed
             # This returns the filepath to the saved image of the results
             # Just populate the src field of the img
-            EYEMOVEMENT = analyzeEyeMovement(file_location)
+
+            # EYEMOVEMENT = analyzeEyeMovement(file_location)
+            delete = 'rm static/images/eyemovement.png'
+            command = 'python3 eyeTracking.py ' + file_location
+            subprocess.call(delete, shell=True)
+            subprocess.call(command, shell=True)
+
+
+
             return redirect(url_for('results'))
         else:
             print("ERROR PROCESSING")
@@ -227,8 +235,15 @@ def results():
                             category = CATEGORY,
                             concepts = CONCEPTS,
                             filler_count = FILLER_COUNT,
-                            eye_movement_image = EYEMOVEMENT)
-
+                            eye_movement_image = '/static/images/eyemovement.png')
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
+    app = Flask(__name__, static_url_path='/static')
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0

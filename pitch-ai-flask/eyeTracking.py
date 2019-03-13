@@ -5,6 +5,7 @@ import matplotlib
 import matplotlib.pyplot as pyplot
 import time
 import os
+import sys
 from math import hypot
 
 
@@ -133,3 +134,6 @@ def save_movement(stats, file_folder='static/images/'):
     ax.tick_params(axis=u'y', which=u'both',length=0)
     ax.xaxis.grid(linestyle='--', color='#e0e1e2')
     pyplot.savefig(file_folder + FILE_NAME)
+
+if __name__ == "__main__":
+    EYEMOVEMENT = analyzeEyeMovement(sys.argv[1])
